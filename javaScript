@@ -1,0 +1,114 @@
+<html>
+<head>
+<script language="javaScript">
+
+function guessing ()
+{
+	/* block comment
+1.	choose a number, in a specific range, that you want the user to guess
+2.	let the user guess a number
+3. 	loop while guess does not equal the number
+4.	then alert the user by telling them if their guess is too high or too low
+5.	let them keep guessing until they get the correct number
+6.	keep track of the number of guesses it takes for them to get the correct number
+7.	once they get the number alert them and tell them hopw many guesses it took
+	*/
+	var usersGuess = -1;
+	var numOfGuesses = 0;// camel case
+	var rand = Math.random()*20
+	rand = rand +1;
+	rand = parseInt(rand)
+	alert(rand);
+	
+	usersGuess = prompt("type the number you guess")// "type the number you guess" is a parameter
+	numOfGuesses = numOfGuesses+1;  // numOfGuesses++;
+	
+	
+	alert("your guess is "+usersGuess) ;
+	
+	
+	while( usersGuess != rand ) // Loop while the users answer is wrong 
+	{
+		numOfGuesses = numOfGuesses + 1;
+	
+		if ( usersGuess < rand ) // guess is too low
+		{
+			alert("your guess is too low")// "guess is too low" is a parameter
+		}
+		
+		else if (usersGuess > rand ) // guess is too high
+		
+		{
+			alert("your guess is too high")// "guess is too high" is a parameter
+		}
+		
+		usersGuess = prompt("enter a new number")// "enter a new number" is a parameter
+		
+
+		
+	}
+	
+	if ( usersGuess == rand ) // guess is correct
+	{
+			alert("Good Job! You are an insane guesser! You got it in only " +numOfGuesses+ " guesses")
+	}
+
+}
+
+
+function greeting ()
+{
+alert("Hello there.")// "hello there" is a parameter
+
+}//end of greeting()
+
+function greeting1 ()
+{
+	// = is the assignment operator.
+	// assignment stores what's on the right side into the element on the left.
+	var name = prompt("Type your name")// "Type your name" is a parameter
+	alert("hey "+name);
+}//end of greeting()
+
+function greeting2 ()
+{
+	var answer = confirm("Do you want to play again?")
+	alert(answer)
+
+}//end of greeting()
+</script>
+
+
+</head>
+<body bgcolor="#fefceb">
+<font color="#ac8d19" face="Goudy Old Style" size="5">
+
+<center>
+
+<h1>My first Javaskript Page</h1>
+
+</center>
+<h2> First Quarter Assignments</h2>
+<a href="index.html">Click here</a> to return to my home page.
+
+<br/><br/>
+
+<input type="button" value="Play my super cool guessing game" onclick="guessing()"/>
+
+<br/><br/>
+
+<hr/>
+
+<input type="button" value="Click me" onclick="greeting()"/>
+
+<hr/>
+
+<input type="button" value="Click to enter a name" onclick="greeting1()"/>
+
+<hr/>
+
+<input type="button" value="Click me one more time" onclick="greeting2()"/><br></br>
+
+</font>
+</body>
+</html>
