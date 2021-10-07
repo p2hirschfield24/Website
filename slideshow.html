@@ -1,1 +1,108 @@
+<html>
+<head>
 
+
+<script language="JavaScript">
+
+var counter = 0 //global variable
+var clipLength = [18, 23, 13, 21, 17, 25];
+
+var picList = ["images/slideshow/slide1donkey.jpg",
+              "images/slideshow/slide2rabbit.jpg",
+			  "images/slideshow/slide3platypus.jpg",
+			  "images/slideshow/slide4walrus.jpg",
+			  "images/slideshow/slide5frog.jpg",
+			  "images/slideshow/slide6monkey.jpg"]
+
+var clipList = ["sounds/slidedonkey.mp3",
+				"sounds/sliderabbit.mp3",
+				"sounds/slideplatypus.mp3",
+				"sounds/slidewalrus.mp3",
+				"sounds/slidefrog.mp3",
+				"sounds/slidemonkey.mp3"]
+var timer;
+var autoStart = false			  
+
+function next ()
+{
+	//counter ++;
+	document.getElementById("display").src = picList[counter];
+	document.getElementById("player").src = clipList[counter];
+	document.getElementById("player").play(); //turn table on
+	increment ();
+
+}
+
+function run ()
+{
+	if( autoStart == false) //player not running
+	{
+		autoStart = true
+		document.getElementById("runButton").value = "Pause" //search whole doc find run button //change text on button to pause
+	} 
+	else // player is running
+	{
+		autoStart = false;
+		document.getElementById("runButton").value = "Run Slideshow"
+	}	
+	autoRun ();
+
+}
+
+function autoRun ()
+{
+	
+	if (autoStart ==true) // runs slideshow automatically
+	{
+		next ();
+		timer = setTimeout ("autoRun()",5000) 
+		//var clipLength = clipList[counter].length; //length of clip in seconds	
+		//	timer = setTimeout("run()",clipLength*1000);
+	}
+	else // stops the automatic 
+	{
+		clearTimeout(timer)
+	}
+
+
+}
+
+function increment ()
+{
+	if(counter == picList.length-1)
+	{
+		counter=0;
+	}
+	else
+	{
+		counter++;
+	}
+}
+
+</script>
+
+
+
+
+</head>
+<body bgcolor="#ecdbba">
+<font color="#144990" face="Goudy Old Style" size="5">
+<center>
+<h1> My Awesome Animal Slideshow</h1>
+
+<h2>First Quarter Assignments</h2>
+<a href="index.html">Click here</a> to return to home page.<br></br>
+
+<input type = "button" value="Next Picture" onclick="next ()">
+<input type = "button" value="Run Slideshow" onclick="run ()" id="runButton">
+
+<br/><br/>
+ <img src="images/slideshow/slide1donkey.jpg" id="display"/>
+ 
+ <audio id = "player"></audio>
+
+
+
+</center>
+</body>
+</html>
