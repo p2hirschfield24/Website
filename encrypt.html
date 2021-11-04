@@ -1,0 +1,186 @@
+<html>
+<head>
+	<script language="javaScript">
+	
+	var alpha = [ "a", //0
+	              "b",  
+	              "c",  
+	              "d",
+	              "e", 
+				  "f", 
+				  "g", 
+				  "h", 
+				  "i", 
+				  "j",
+				  "k", 
+				  "l", 
+				  "m", 
+				  "n", 
+				  "o", 
+				  "p", 
+				  "q", 
+				  "r", 
+				  "s", 
+				  "t", 
+				  "u", 
+				  "v", 
+				  "w", 
+				  "x", 
+				  "y", 
+				  "z", 
+				  " ", 
+				];
+	
+	var scrambled = [ "q", 
+	              "w",  
+	              "e",  
+	              "r",
+	              "t", 
+				  "y", 
+				  "u", 
+				  "i", 
+				  "o", 
+				  "p",
+				  "a", 
+				  "s", 
+				  "d", 
+				  "f", 
+				  "g", 
+				  "h", 
+				  "j", 
+				  "k", 
+				  "l", 
+				  "z", 
+				  "x", 
+				  "c", 
+				  "v", 
+				  "b", 
+				  "n", 
+				  "m", 
+				  " ", 
+				];
+				
+	var numberList; 
+	
+	
+function secretMessage()
+{
+
+	if (document.getElementById("unencrypt").value == "") // English box is empty
+		{
+		if (document.getElementById("encrypt").value == "") // Scrambled box is empty
+			{
+			alert("Both boxes are empty");
+			}
+		else
+			{
+				alert("I will decrypt this message");
+				unencrypt();
+			}
+		}
+	else  // There's data in the first box
+	{
+		if (document.getElementById("encrypt").value == "") // Scrambled box is empty
+		{
+			alert("I will encrypt this message");
+			encrypt();
+		}
+		else
+		{
+			alert("Both boxes have data. Please clear boxes");
+		}
+	}
+
+}
+
+	function encrypt ()
+	{
+		var firstBox = document.getElementById("unencrypt").value;
+		numberList = new Array (firstBox.length)
+		
+		var counter = 0;
+		while ( counter < firstBox.length ) // counter less than number of characters
+		{
+			var letter = firstBox.substr(counter,1); //start at position counter and
+			var letIndex = alpha.indexOf(letter); // tell me the letter
+			numberList [counter] = letIndex;
+			counter++;
+		}
+		
+		//alert(numberList); //alert that letter
+		var counter = 0;
+		var answer = " "
+		while ( counter < firstBox.length )
+		{
+			var letIndex = numberList[counter];
+			answer = answer + scrambled[letIndex]; 
+		
+			counter++;
+		}
+		//alert(answer);
+		document.getElementById("encrypt").value = answer 
+	}
+	
+	
+	
+	function unencrypt ()
+	{
+		var secondBox = document.getElementById("encrypt").value;
+		numberList = new Array (secondBox.length)
+		
+		var counter = 0;
+		while ( counter < secondBox.length ) // counter less than number of characters
+		{
+			var letter = secondBox.substr(counter,1); //start at position counter and
+			var letIndex = scrambled.indexOf(letter); // tell me the letter
+			numberList [counter] = letIndex;
+			counter++;
+		}
+		
+		//alert(numberList); //alert that letter
+		var counter = 0;
+		var answer = " "
+		while ( counter < secondBox.length )
+		{
+			var letIndex = numberList[counter];
+			answer = answer + alpha[letIndex]; 
+		
+			counter++;
+		}
+		//alert(answer);
+		document.getElementById("unencrypt").value = answer 
+	}
+	
+
+	function clearBoxes()
+	{
+		document.getElementById("unencrypt").value="";
+		document.getElementById("encrypt").value="";
+		//alert("Clearing")
+	}
+	
+	
+	</script>
+</head>
+<body bgcolor="#f4d5f6">
+<font color="#442c46" face="Goudy Old Style" size="5">
+	<center>
+		<h1>My Encryption App</h1>
+		<br/>
+		<input type ="button" value="Encrypt" onClick="secretMessage()"/>
+		<input type ="button" value="Clear" onClick="clearBoxes()"/>
+		<br/><br/>
+		
+		Unencrypted Message
+		<input type = "text" size="40" id="unencrypt"/> 
+		
+		<br/><br/>
+		Encrypted Message
+		<input type = "text" size="40" id="encrypt"/> 
+			
+			
+	<h3> First Quarter Assignments</h3>
+	<a href="index.html">Click here</a> to return to my home page.
+	</center>
+</body>
+</html>
