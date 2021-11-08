@@ -7,12 +7,12 @@
 	              "c",  
 	              "d",
 	              "e", 
-				  "f", 
-				  "g", 
-				  "h", 
-				  "i", 
-				  "j",
-				  "k", 
+		      "f", 
+		     "g", 
+		     "h", 
+		     "i", 
+		     "j",
+		            "k", 
 				  "l", 
 				  "m", 
 				  "n", 
@@ -75,7 +75,7 @@ function secretMessage()
 		else
 			{
 				alert("I will decrypt this message");
-				document.getElementById("unencrypt").value = code(amIEncrpting==true); //true or false
+				document.getElementById("unencrypt").value = code(false); //true or false
 			}
 		}
 	else  // There's data in the first box
@@ -83,7 +83,7 @@ function secretMessage()
 		if (document.getElementById("encrypt").value == "") // Scrambled box is empty
 		{
 			alert("I will encrypt this message");
-			document.getElementById("encrypt").value = code(amIEncrpting==false); //true or false
+			document.getElementById("encrypt").value = code(true); //true or false
 		}
 		else
 		{
@@ -93,13 +93,13 @@ function secretMessage()
 
 }
 
-function code(amIEncrypting)
+function code(amIencrypting)
 {
 	var firstList;
 	var secondList;
 	var firstBox;
 	
-	if(amIEncrpting==true) // english to scrambled
+	if(amIencrypting==true) // english to scrambled
 	{
 		firstList = alpha;
 		secondList = scrambled;
@@ -145,10 +145,11 @@ function code(amIEncrypting)
 	
 	</script>
 </head>
-<body bgcolor="#f4d6f6">
-<font color="#442c46" face="Goudy Old Style" size="5">
+<body bgcolor="#845782">
+<font color="#4499c46" face="Goudy Old Style" size="5">
 	<center>
-		<h1>My Encryption App</h1>
+		<h1>My Encryption App </h1>
+		<h2> *Part Two* </h2>
 		<br/>
 		<input type ="button" value="Encrypt" onClick="secretMessage()"/>
 		<input type ="button" value="Clear" onClick="clearBoxes()"/>
