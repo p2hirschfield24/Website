@@ -1,0 +1,213 @@
+<html>
+<head>
+<script language = JavaScript>
+var wordList = ["Japan",
+"England",
+"Australia",
+"United States",
+"New Zealand",]
+
+var defList = ["Tokyo",
+"London",
+"Melbourne",
+"New York",
+"Auckland"]
+
+var asked = [ false,
+			  false,
+			  false,
+			  false,
+			  false
+			]
+			  
+var qAsked = 0;	
+var life = 3
+var score = 0
+var counter = 0
+
+function stuff()
+{
+ 
+	document.getElementById("lifec").value = life
+	document.getElementById("score").value = score
+
+}
+function nextQ()
+{
+	
+		var termsOrDefs = document.getElementById("terms").checked;
+	displayClue(termsOrDefs);// terms = termsOrDefs
+	document.getElementById("answer").value = "";
+}
+
+function displayClue(terms)
+{
+	qAsked = getUnusedIndex();
+	if(terms == true)
+	{
+		document.getElementById("clue").value = wordList[qAsked];
+	}
+	else
+	{
+		document.getElementById("clue").value = defList[qAsked];
+	}
+	
+}
+
+function nextA()
+{
+	var termsOrDefs = document.getElementById("terms").checked
+	checkAnswer(termsOrDefs);	
+}
+	
+
+function checkAnswer(defsAreAnswers)
+{
+	var answers;
+	if(defsAreAnswers==true)
+	{
+		answers = defList;
+	
+	}
+	else
+	{
+		answers = wordList;
+	}
+	
+	
+	var userA = document.getElementById("answer").value;
+	if(userA == answers [qAsked])
+	{
+		document.getElementById("win").style.visibility ="visible";
+		document.getElementById("loose").style.visibility ="hidden";
+		alert("Correct! Good Job!")
+		score = score+10
+		document.getElementById("score").value = score
+		if (score == 50)
+		{
+			alert("Game Over! You did so great! ")
+			location.reload();
+		}
+	}
+	else
+	{
+		document.getElementById("win").style.visibility ="hidden";
+		document.getElementById("loose").style.visibility ="visible";
+		alert("Not quite! Try again!")
+		life = life-1
+		document.getElementById("lifec").value = life
+		if(life==0)
+		{
+			alert("Game Over! Please play again!")
+			location.reload();
+		}
+
+	}
+	
+	var winWidth= (window.innerWidth/2)-166;
+	document.getElementById("image").sytle.left = winWdith;
+	document.getElementById("image").sytle.visability = "visable";
+	
+	if(counter<asked.length+1)
+	{
+		counter ++
+	}
+	else
+	{
+		counter = 0
+		end ()
+	}
+}
+function end ()
+{
+	counter = 0
+	score = 0
+	lives = 3
+	asked = [ false,
+			  false,
+			  false,
+			  false,
+			  false
+			] 
+
+}
+function doStuff()
+{
+	var temp = getUnusedIndex();
+	if( temp >-1)
+		alert(temp);
+	else 
+		alert("All Question have been asked");
+}
+
+function getUnusedIndex()
+{
+	// write code to generate a random number between 0 and asked.lengh
+	var rand = Math.floor(Math.random()*asked.length);
+	// write an if-statment that checks if asked at rand is false
+	
+	
+	/********* An infinite loop eventually occurs. Why? *******************/
+	if( counter < asked.length )
+	{
+		while( asked[rand] == true ) 
+		{
+			rand = Math.floor(Math.random()*asked.length);
+		}// rand is a number that has not been asked yet
+	}
+	else
+	{
+		rand = -1;// Not a valid index for an array
+		
+	}
+	
+	asked[rand] = true;
+	
+
+	
+	return rand;
+}
+</script>
+</head>
+<body bgcolor="#f4d5f6">
+<font color="#845782" face="Goudy Old Style" size="5">
+
+<center>
+<h1>Guess The Most Populated City</h1>
+
+<input type="radio" id="terms" name="qType" onchange="restart()" checked >
+  <label for="terms">Country</label>
+<input type="radio" id="defs" name="qType" on>
+  <label for="defs">City</label>
+<input type="button" value="Next" onclick="nextQ()"/>
+<br/><br/>
+<input type = "text" id="clue" readonly size=40>
+
+<br/><br/>
+<input type = "text" id="answer" onfocusout="nextA()" size=40>
+<br/>
+<input type="button" value="Check Answer"onclick ="checkAnswer()">
+  
+<h2>First Quarter Assignments</h2>
+<a href="index.html">Click here</a> to return to home page.<br></br>
+
+</center> 
+
+
+<font color="#000000" size = "2"style ="position:absolute; left:0; top:5">
+<h4>LIFE COUNT</h4>
+<input type = "text" size="15" id="lifec" style ="position:absolute; left:0; top:30"/>
+<font color="#000000" size = "3"style ="position:absolute; left:0; top:40">
+<h5>SCORE</h5>
+<input type = "text" size="15" id="score" style ="position:absolute; left:0; top:45"/>
+
+<div id="image" style="position:absolute; visibility:hidden; top:250; left:450;" >
+<img id="win" src ="images/happy.png" width = 300>
+</div>
+
+<div id="image" style="position:absolute; visibility:hidden; top:250; left:450;" >
+<img id="loose" src ="images/sad.png" width = 300>
+</div>
+
+</body>    
+</html>
