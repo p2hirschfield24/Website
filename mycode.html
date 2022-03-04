@@ -1,0 +1,141 @@
+<html>
+<head>
+<script language = JavaScript>
+var movieList = [
+
+					["images/slides/homeAlone.jpg","Family"],
+					["images/slides/et.jfif","Family"],
+					["images/slides/pb.jfif","Family"],
+					["images/slides/clueless.jpg", "Coming of Age"],
+					["images/slides/lsimon.jpeg", "Coming of Age"],
+					["images/slides/10.jfif", "Coming of Age"],
+					["images/slides/meangirls.jpg", "Comedy"],
+					["images/slides/zoo.jfif", "Comedy"],
+					["images/slides/nd.jfif", "Comedy"],
+					["images/slides/FBDO.jpg", "Adventure"],
+					["images/slides/jum.jfif", "Adventure"],
+					["images/slides/inter.jfif", "Adventure"],
+					["images/slides/grease.jpg","Classics"],
+					["images/slides/jones.jpg","Classics"],
+					["images/slides/oz.jfif","Classics"]
+					
+				]
+	
+var sublist	;
+var counter = 0
+
+function select()
+{
+ var selection = document.getElementById("Genre").value;
+ choose(selection);
+}
+function choose(Movie)
+{
+	sublist = new Array (0);
+	
+	for(i=0; i< movieList.length; i++)
+	{
+		if (movieList[i][1] == Movie) 
+		{ 
+			sublist.push(movieList[i][0]);
+			document.getElementById("display").src = (sublist[counter])	
+			if (Movie == "Family" )
+			{
+				document.getElementById("family1").style.visibility ="visible";
+				document.getElementById("family2").style.visibility ="visible";
+			}
+			else if(Movie == "Comedy")
+			{
+				document.getElementById("laugh1").style.visibility ="visible";
+				document.getElementById("laugh2").style.visibility ="visible";
+			}
+			else if(Movie == "Adventure" )
+			{
+			 	document.getElementById("mountain1").style.visibility ="visible";
+				document.getElementById("mountain2").style.visibility ="visible";
+			}
+			else 
+			{
+				document.getElementById("popcorn1").style.visibility ="visible";
+				document.getElementById("popcorn2").style.visibility ="visible";
+			}
+		
+		}
+	}
+
+}		
+function exit()
+{
+	location.reload();
+}
+function next()
+{
+	if(counter==3)
+	{
+	alert("Those were the top 3 recomndations based on the genre "+document.getElementById("Genre").value+"! Please choose another genre!")
+	exit()
+	}
+	else
+	{
+	document.getElementById("display").src = (sublist[counter])
+	counter++
+	}
+
+}
+
+
+</script>
+</head>
+<body>
+<center>
+<body bgcolor="#A8DCE7">
+<font color="#FFFFFF" face = "arial" size = "5">
+
+<h1> Movie Recomendations!</h1>
+<img src = "images/blues.png" width = 300 id = "display" />
+</br>
+<input type="button" value="Next" onclick="next()"/>
+</br>
+<select id = "Genre" onchange = "select()" >
+	<option> --- Choose Genre --- </option>
+	<option> Comedy </option>
+	<option> Family </option>
+	<option> Adventure </option>
+	<option> Classics </option>
+	<option> Coming of Age </option>
+</br>
+</select>
+
+</br></br>
+<div id ="family1" style = "position:absolute; visibility:hidden; left:70; top:250">
+<img src="images/slides/fam6.png" width = 200 >
+</div>
+<div id ="family2" style = "position:absolute; visibility:hidden; left:1000; top:250">
+<img src="images/slides/fam6.png" width = 200 >
+</div>
+
+<div id ="laugh1" style = "position:absolute; visibility:hidden; left:70; top:250">
+<img src="images/slides/fun.png" width = 200 >
+</div>
+<div id ="laugh2" style = "position:absolute; visibility:hidden; left:1000; top:250">
+<img src="images/slides/fun.png" width = 200 >
+</div>
+
+<div id ="mountain1" style = "position:absolute; visibility:hidden; left:70; top:250">
+<img src="images/slides/map.png" width = 200 >
+</div>
+<div id ="mountain2" style = "position:absolute; visibility:hidden; left:1000; top:250">
+<img src="images/slides/map.png" width = 200 >
+</div>
+
+
+<div id ="popcorn1" style = "position:absolute; visibility:hidden; left:70; top:250">
+<img src="images/slides/pop4.png" width = 200 >
+</div>
+<div id ="popcorn2" style = "position:absolute; visibility:hidden; left:1000; top:250">
+<img src="images/slides/pop4.png" width = 200 >
+</div>
+
+</center> 
+</body>
+</html>
